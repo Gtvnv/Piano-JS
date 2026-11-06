@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador de Piano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1 class="app__title">🎹 Simulador de Piano</h1>
+      <p class="app__subtitle">
+        Toque com o mouse ou use o teclado do seu computador.
+      </p>
+    </header>
+
+    <section class="controls" aria-label="Controles do piano">
+      <label class="control">
+        <input type="checkbox" id="toggle-notes" checked />
+        <span>Mostrar notas</span>
+      </label>
+
+      <label class="control">
+        <input type="checkbox" id="toggle-keys" checked />
+        <span>Mostrar teclas do teclado</span>
+      </label>
+
+      <label class="control control--volume">
+        <span>Volume</span>
+        <input type="range" id="volume" min="0" max="100" value="60" />
+      </label>
+    </section>
+
+    <!-- As teclas são geradas dinamicamente pelo JavaScript -->
+    <div class="piano" id="piano" role="group" aria-label="Teclas do piano"></div>
+
+    <footer class="app__footer">
+      <p>
+        Feito com HTML, CSS e JavaScript puro — som gerado pela
+        <strong>Web Audio API</strong> (sem arquivos de áudio).
+      </p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

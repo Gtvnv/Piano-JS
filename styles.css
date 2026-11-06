@@ -1,0 +1,213 @@
+:root {
+  --bg-1: #1e1b2e;
+  --bg-2: #2d2a45;
+  --accent: #8b5cf6;
+  --accent-soft: #c4b5fd;
+  --white-key: #fdfdfd;
+  --white-key-active: #d9c7ff;
+  --black-key: #1b1b1f;
+  --black-key-active: #6d28d9;
+  --text: #f4f1ff;
+  --text-dim: #b8b2d6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at top, var(--bg-2), var(--bg-1) 70%);
+  padding: 24px;
+}
+
+.app {
+  width: 100%;
+  max-width: 920px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.app__header {
+  text-align: center;
+}
+
+.app__title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: 0.5px;
+}
+
+.app__subtitle {
+  margin-top: 8px;
+  color: var(--text-dim);
+}
+
+/* ---------- Controles ---------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 20px;
+  border-radius: 14px;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-dim);
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.95rem;
+}
+
+.control input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.control--volume input[type="range"] {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* ---------- Piano ---------- */
+.piano {
+  position: relative;
+  display: flex;
+  padding: 22px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #141221, #0d0b17);
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.55),
+    inset 0 2px 0 rgba(255, 255, 255, 0.05);
+  border-top: 6px solid var(--accent);
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.key {
+  position: relative;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 12px;
+  gap: 4px;
+  font-family: inherit;
+  transition: background 0.05s ease, transform 0.05s ease;
+}
+
+/* Teclas brancas */
+.key--white {
+  width: 60px;
+  height: 230px;
+  background: var(--white-key);
+  border-radius: 0 0 8px 8px;
+  box-shadow: inset 0 -6px 8px rgba(0, 0, 0, 0.12);
+  z-index: 1;
+}
+
+.key--white.active,
+.key--white:active {
+  background: var(--white-key-active);
+  transform: translateY(2px);
+}
+
+/* Teclas pretas */
+.key--black {
+  width: 38px;
+  height: 145px;
+  background: linear-gradient(180deg, #333, var(--black-key));
+  border-radius: 0 0 6px 6px;
+  z-index: 2;
+  /* Fica entre as brancas: metade da largura para a esquerda */
+  margin: 0 -19px;
+  box-shadow:
+    0 6px 10px rgba(0, 0, 0, 0.6),
+    inset 0 -3px 4px rgba(255, 255, 255, 0.08);
+}
+
+.key--black.active,
+.key--black:active {
+  background: linear-gradient(180deg, #7c3aed, var(--black-key-active));
+  transform: translateY(2px);
+}
+
+/* Rótulos dentro das teclas */
+.key__note {
+  font-size: 0.8rem;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.key__code {
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+.key--white .key__note {
+  color: #4c1d95;
+}
+.key--white .key__code {
+  color: #4c1d95;
+  background: rgba(139, 92, 246, 0.14);
+}
+
+.key--black .key__note,
+.key--black .key__code {
+  color: #e9e2ff;
+}
+.key--black .key__code {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Estados de ocultar rótulos */
+.piano.hide-notes .key__note {
+  display: none;
+}
+.piano.hide-keys .key__code {
+  display: none;
+}
+
+.app__footer {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.app__footer strong {
+  color: var(--accent-soft);
+}
+
+@media (max-width: 600px) {
+  .key--white {
+    width: 46px;
+    height: 190px;
+  }
+  .key--black {
+    width: 30px;
+    height: 120px;
+    margin: 0 -15px;
+  }
+}
